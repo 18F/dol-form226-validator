@@ -30,20 +30,38 @@ Section8b = React.createClass({
         <header>
           <p>section 8b instructions</p>
         </header>
-        <label htmlFor="howMany">How many:
-          <input type="text" name="howMany" ref="howMany" onKeyUp={this.validate}
-                 data-valid={ this.isValid("howMany")}/>
-        </label>
-        {this.emitValidationError("howMany")}
 
-        <label htmlFor="nameOfContract">Name of contract: <input type="text" ref="nameOfContract"/></label>
-        <label htmlFor="descriptionOfWork">Description of work: <textarea ref="nameOfContract"/></label>
-        <input type="radio" name="method" checked={method === "pws"} value="pws"
+        <div className="form-group">
+          <label htmlFor="howMany">How many:</label>
+          <input className="form-control" type="text" name="howMany" ref="howMany"
+                 onKeyUp={this.validate} data-valid={ this.isValid("howMany")}/>
+          {this.emitValidationError("howMany")}
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="nameOfContract">Name of contract: </label>
+          <input className="form-control" type="text" ref="nameOfContract"/>
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="descriptionOfWork">Description of work: </label>
+          <textarea className="form-control" rows="3" ref="nameOfContract"/>
+        </div>
+        
+        <label className="radio-inline">
+          <input type="radio" name="method" checked={method === "pws"} value="pws"
                onChange={setMethod}/> PWS
-        <input type="radio" name="method" checked={method === "alternate"} value="alternate"
-               onChange={setMethod}/> Alternate wage data
-        <input type="radio" name="method" checked={method ==="sca"} value="sca"
-               onChange={setMethod}/> SCA
+        </label>
+
+        <label className="radio-inline">
+          <input type="radio" name="method" checked={method === "alternate"} value="alternate"
+                 onChange={setMethod}/> Alternate wage data
+        </label>
+        
+        <label className="radio-inline">
+          <input type="radio" name="method" checked={method ==="sca"} value="sca"
+                 onChange={setMethod}/> SCA
+        </label>
       </section>
     );
   }

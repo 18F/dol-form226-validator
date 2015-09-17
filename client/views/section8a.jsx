@@ -28,10 +28,22 @@ Section8a = React.createClass({
           <header>
             <p>section 8a instructions</p>
           </header>
-          <input type="radio" name="didPaySubminimum" checked={didPaySubminimum} value="Yes"
-                 onChange={setDidPaySubminimum}/> Yes
-          <input type="radio" name="didPaySubminimum" checked={!didPaySubminimum} value="No"
-                 onChange={unsetDidPaySubminimum}/> No
+          <label className="radio-inline">
+            <input type="radio" 
+                   id="inlineRadio1"
+                   name="didPaySubminimum" 
+                   checked={didPaySubminimum} 
+                   value="Yes"
+                   onChange={setDidPaySubminimum}/> Yes
+          </label>
+          <label className="radio-inline">
+            <input type="radio"
+                   id="inlineRadio2"
+                   name="didPaySubminimum" 
+                   checked={!didPaySubminimum} 
+                   value="No"
+                   onChange={unsetDidPaySubminimum}/> No
+          </label>
         </section>
       </article>
     );

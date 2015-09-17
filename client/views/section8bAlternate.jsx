@@ -9,14 +9,28 @@ Section8bAlternate = React.createClass({
     return (
       <fieldset>
         <legend>instructions</legend>
-        <label htmlFor="8bAlternateDescription">Description of work: <input
-type="input" ref="8bAlternateDescription"/></label>
-        <label htmlFor="8bAlternateSource">Alternative data source: <input
-type="input" ref="8bAlternateSource"/></label>
-        <label htmlFor="8bAlternatePrevailing">Prevailing wage provided by source: <input
-type="input" ref="8bAlternatePrevailing"/></label>
-        <label htmlFor="8bAlternateDate">Date data retrived: <input
-type="input" ref="8bAlternateDate"/></label>
+        
+        <div className="form-group">
+          <label htmlFor="8bAlternateDescription">Description of work: </label>
+          <input className="form-control" type="input" ref="8bAlternateDescription"/>
+        </div>
+        
+        <div className="form-group">
+          <label htmlFor="8bAlternateSource">Alternative data source: </label>
+          <input className="form-control" type="input" ref="8bAlternateSource"/>
+        </div>
+
+
+        <div className="form-group">
+          <label htmlFor="8bAlternatePrevailing">Prevailing wage provided by source: </label>
+          <input className="form-control" type="input" ref="8bAlternatePrevailing"/>
+        </div>
+      
+        <div className="form-group">
+          <label htmlFor="8bAlternateDate">Date data retrived: </label>
+          <input className="form-control" type="input" ref="8bAlternateDate"/>
+        </div>
+
       </fieldset>
     );
   }
