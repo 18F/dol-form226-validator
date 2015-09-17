@@ -22,34 +22,33 @@ App = React.createClass({
       return <Section8/>;
     };
     
-    var renderSection8 = function() {
-      return <Section8/>;
-    };
-    
     var renderSection8a = function() {
       return <Section8a/>;
     };
     
     var renderSection8b = function() {
-      return <Section8b/>;
+      if (formState.section8a)
+        return <Section8b/>;
     };
     
     var renderSection8bAlternate = function() {
-      return <Section8bAlternate/>;
+      if (formState.section8b && formState.section8b.method === "alternate")
+        return <Section8bAlternate/>;
     };
     
     var renderSection8bPws = function() {
-      return <Section8bPws/>;
+      if (formState.section8b && formState.section8b.method === "pws")
+        return <Section8bPws/>;
     };
     
     var renderSection8bSca = function() {
-      return <Section8bSca/>;
+      if (formState.section8b && formState.section8b.method === "sca")
+        return <Section8bSca/>;
     };
     
     return (
       <div>
         { renderSection8Instructions() }
-        { renderSection8() }
         { renderSection8a() }
         { renderSection8b() }
         { renderSection8bAlternate() }
