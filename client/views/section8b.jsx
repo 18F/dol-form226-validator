@@ -1,6 +1,8 @@
 Section8b = React.createClass({
   mixins: [ReactMeteorData, PersistFormMixin, ValidationMixin({
-    "howMany": [ { method: validator.isInt, message: "must be an integer" } ]
+    "howMany": [ { method: validator.isInt, message: "must be an integer" } ],
+    "nameOfContract": [ { method: validator.isLength, args: [1], message: "required" } ],
+    "descriptionOfWork": [ { method: validator.isLength, args: [1], message: "required" } ]
   })],
   getMeteorData: function() {
     return {
@@ -40,12 +42,17 @@ Section8b = React.createClass({
 
         <div className="form-group">
           <label htmlFor="nameOfContract">Name of contract: </label>
-          <input className="form-control" type="text" ref="nameOfContract"/>
+          <input className="form-control" type="text" name="nameOfContract"
+                 ref="nameOfContract" onBlur={this.validate}
+                 data-valid={ this.isValid("nameOfContract")}/>
+          {this.emitValidationError("nameOfContract")}
         </div>
 
         <div className="form-group">
           <label htmlFor="descriptionOfWork">Description of work: </label>
-          <textarea className="form-control" rows="3" ref="nameOfContract"/>
+          <textarea className="form-control" rows="3" ref="nameOfContract" name="descriptionOfWork"
+          onBlur={this.validate}
+                 data-valid={ this.isValid("descriptionOfWork")}/>
         </div>
         
         <label className="radio-inline">

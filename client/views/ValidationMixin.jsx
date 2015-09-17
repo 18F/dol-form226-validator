@@ -10,9 +10,20 @@ ValidationMixin = function(config) {
     if (validations) {
       _.each(validations, function(validation) {
         var validationMethod = validation.method;
-        var isError = !validationMethod(value);
-        if (isError) {
-          messages.push(validation.message);
+        var validationArgs = validation.args;
+
+        if (!validationArgs) {
+          var isError = !validationMethod(value);
+          if (isError) {
+            messages.push(validation.message);
+          }
+        } else {
+          var args = _.clone(validationArgs);
+          args.unshift(value);
+          var isError = !validationMethod.apply(this, args);
+          if (isError) {
+            messages.push(validation.message);
+          }
         }
       });
     }
