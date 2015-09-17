@@ -52,7 +52,8 @@ Section8b = React.createClass({
           <label htmlFor="descriptionOfWork">Description of work: </label>
           <textarea className="form-control" rows="3" ref="nameOfContract" name="descriptionOfWork"
           onBlur={this.validate}
-                 data-valid={ this.isValid("descriptionOfWork")}/>
+                    data-valid={ this.isValid("descriptionOfWork")}/>
+          {this.emitValidationError("descriptionOfWork")}
         </div>
         
         <label className="radio-inline">
