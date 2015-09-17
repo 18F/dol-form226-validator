@@ -32,17 +32,17 @@ App = React.createClass({
     };
     
     var renderSection8bAlternate = function() {
-      if (formState.section8b && formState.section8b.method === "alternate")
+      if (formState.section8a && formState.section8b && formState.section8b.method === "alternate")
         return <Section8bAlternate/>;
     };
     
     var renderSection8bPws = function() {
-      if (formState.section8b && formState.section8b.method === "pws")
+      if (formState.section8a && formState.section8b && formState.section8b.method === "pws")
         return <Section8bPws/>;
     };
     
     var renderSection8bSca = function() {
-      if (formState.section8b && formState.section8b.method === "sca")
+      if (formState.section8a && formState.section8b && formState.section8b.method === "sca")
         return <Section8bSca/>;
     };
     
