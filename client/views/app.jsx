@@ -6,8 +6,7 @@ App = React.createClass({
   },
   getInitialState: function() {
     return {
-      page: "section8",
-      subsection: "a"
+      page: "section8"
     }
   },
   render: function() {
@@ -17,7 +16,7 @@ App = React.createClass({
     var renderPage = function() {
       switch (page) {
         case "section8":
-          return <Section8 subsection={subsection}/>;
+          return <Section8/>;
         default:
           return <p>no valid page wired yet</p>;
       }
