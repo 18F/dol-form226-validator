@@ -1,18 +1,19 @@
 Section8b = React.createClass({
-  mixins: [ReactMeteorData],
+  mixins: [ReactMeteorData, PersistFormMixin, ValidationMixin({
+    "howMany": [ { method: validator.isInt, message: "must be an integer" } ]
+  })],
   getMeteorData: function() {
     return {
       formState: Session.get("formState")
     }
   },
+  getInitialState: function() {
+    return {};
+  },
   render: function() {
     var that = this;
     var formState = this.data.formState
     var method = (formState.section8b && formState.section8b.method) ? formState.section8b.method : "";
-    
-    var persist = function() {
-      Session.set("formState", formState);
-    };
     
     var setMethod = function(event) {
       var method = event.target.value;
@@ -21,62 +22,19 @@ Section8b = React.createClass({
       } else {
         formState.section8b = {method: method};
       }
-      persist();
-    };
-    
-    /*
-    var validate = function(event) {
-      var isValid = true;
-      var targetName = event.target.name;
-      var value = event.target.value;
-      
-      switch (targetName) {
-        case "howMany":
-          isValid = validator.isInt(value);
-          break;
-      }
-
-      setValid(name, isValid);
-    }
-
-    var getValidationStateName = function(name) {
-      return "validation-name";
-    };
-    
-    var setValid = function (name, isValid) {
-      var validationStateName = getValidationStateName(name);
-      that.setState({validationStateName: isValid});
+      that.persist(formState);
     };
 
-    var isValid = function(name) {
-      var validationStateName = getValidationStateName(name);
-      var validationExists = !_.isUndefined(that.state.validationStateName);
-      return validationExists && that.state.validationStateName;
-    }
-
-    var emitValidationError = function(name) {
-      var isInvalid = !isValid(name);
-      if (isInvalid) {
-        return <span data-error>{getValidationErrorFor(name)}</span>;
-      }
-    }
-
-    var getValidationErrorFor = function(name) {
-      switch (name) {
-        case "howMany":
-          return "must be numeric";
-      };
-    }
-    */
-    
     return (
       <section>
         <header>
           <p>section 8b instructions</p>
         </header>
         <label htmlFor="howMany">How many:
-          <input type="text" name="howMany" ref="howMany"/>
+          <input type="text" name="howMany" ref="howMany" onKeyUp={this.validate}
+                 data-valid={ this.isValid("howMany")}/>
         </label>
+        {this.emitValidationError("howMany")}
 
         <label htmlFor="nameOfContract">Name of contract: <input type="text" ref="nameOfContract"/></label>
         <label htmlFor="descriptionOfWork">Description of work: <textarea ref="nameOfContract"/></label>
