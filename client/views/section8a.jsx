@@ -15,10 +15,58 @@ Section8a = React.createClass({
   render: function() {
     var didPaySubminimum = this.state.didPaySubminimum;
     var that = this;
+
+    var validate = function(event) {
+      var isValid = true;
+      var targetName = event.target.name;
+      var value = event.target.value;
+      
+      switch (targetName) {
+        case "howMany":
+          isValid = validator.isInt(value);
+          break;
+      }
+
+      setValid(name, isValid);
+    }
+
+    var getValidationStateName = function(name) {
+      return "validation-name";
+    };
+    
+    var setValid = function (name, isValid) {
+      var validationStateName = getValidationStateName(name);
+      that.setState({validationStateName: isValid});
+    };
+
+    var isValid = function(name) {
+      var validationStateName = getValidationStateName(name);
+      var validationExists = !_.isUndefined(that.state.validationStateName);
+      return validationExists && that.state.validationStateName;
+    }
+
+    var emitValidationError = function(name) {
+      var isInvalid = !isValid(name);
+      if (isInvalid) {
+        return <span data-error>{getValidationErrorFor(name)}</span>;
+      }
+    }
+
+    var getValidationErrorFor = function(name) {
+      switch (name) {
+        case "howMany":
+          return "must be numeric";
+      };
+    }
     
     var emitHowMany = function() {
       if (didPaySubminimum) {
-        return <label htmlFor="howMany">How many: <input type="text" ref="howMany"/></label>;
+        return (
+          <label htmlFor="howMany">How many:
+            <input type="text" name="howMany" ref="howMany" onKeyUp={validate} data-valid={ isValid("howMany") }/>
+            { emitValidationError("howMany") }
+          </label>
+        );
       }
     };
 

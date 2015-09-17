@@ -1,3 +1,7 @@
 label {
   display: block;
 }
+
+input[data-valid=false], span[data-error] {
+  color: red;
+}

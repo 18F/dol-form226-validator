@@ -44,7 +44,7 @@ Section8b = React.createClass({
           <p>section 8b instructions</p>
         </header>
         <label htmlFor="nameOfContract">Name of contract: <input type="text" ref="nameOfContract"/></label>
-        <label htmlFor="descriptionOfWork">descriptionOfWork: <textarea ref="nameOfContract"/></label>
+        <label htmlFor="descriptionOfWork">Description of work: <textarea ref="nameOfContract"/></label>
         <input type="radio" name="method" checked={method === "PWS"} value="pws"
                onChange={setMethod}/> PWS
         <input type="radio" name="method" checked={method === "alternate"} value="alternate"
